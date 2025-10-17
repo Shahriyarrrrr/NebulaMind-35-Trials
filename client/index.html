@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NebulaMind: 35 Trials</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js" defer></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="app">
+    <header class="glass topbar">
+      <div class="brand">
+        <div class="logo">🜁</div>
+        <div class="title">
+          <h1>NebulaMind</h1>
+          <small>35 Trials</small>
+        </div>
+      </div>
+      <div id="prize" class="prize">৳0</div>
+    </header>
+
+    <!-- Start Screen -->
+    <section id="start-screen" class="panel show">
+      <div class="card big">
+        <h2>Enter The Trials</h2>
+        <form id="start-form">
+          <div class="row">
+            <label>Name</label>
+            <input type="text" id="player-name" maxlength="30" required placeholder="Your name" />
+          </div>
+          <div class="row">
+            <label>Gamer Tag</label>
+            <input type="text" id="player-tag" maxlength="20" required placeholder="e.g., NovaRider" />
+          </div>
+          <div class="row">
+            <label>Age</label>
+            <input type="number" id="player-age" min="1" max="120" required />
+          </div>
+
+          <div class="row">
+            <label>Choose Avatar</label>
+            <div class="avatars" id="avatars">
+              <img src="assets/avatars/avatar1.png" data-id="avatar1" class="avatar selected" alt="avatar1" />
+              <img src="assets/avatars/avatar2.png" data-id="avatar2" class="avatar" alt="avatar2" />
+              <img src="assets/avatars/avatar3.png" data-id="avatar3" class="avatar" alt="avatar3" />
+              <img src="assets/avatars/avatar4.png" data-id="avatar4" class="avatar" alt="avatar4" />
+              <img src="assets/avatars/avatar5.png" data-id="avatar5" class="avatar" alt="avatar5" />
+            </div>
+          </div>
+
+          <div class="row">
+            <label>Pick your domain</label>
+            <select id="domain">
+              <option value="mixed">Mixed</option>
+              <option value="gk">General Knowledge</option>
+              <option value="math">Math & Logic</option>
+              <option value="tech">Tech</option>
+              <option value="sci">Science</option>
+            </select>
+          </div>
+
+          <button class="btn primary" type="submit">Start</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Game HUD -->
+    <section id="game" class="panel">
+      <div class="hud">
+        <div class="player">
+          <img id="hud-avatar" class="avatar hud" src="assets/avatars/avatar1.png" alt="avatar" />
+          <div>
+            <div id="hud-name" class="hud-name">Player</div>
+            <div id="hud-tag" class="hud-tag">@tag</div>
+          </div>
+        </div>
+        <div class="level">Level <span id="level">1</span>/35</div>
+        <div class="timer" id="timer">00:30</div>
+      </div>
+
+      <div class="question-wrap glass">
+        <div class="question" id="question">Question text</div>
+        <div class="options" id="options"></div>
+      </div>
+
+      <div class="lifelines">
+        <button id="lifeline-5050" class="btn">50/50</button>
+        <button id="lifeline-best2" class="btn">Best Two</button>
+        <button id="lifeline-audience" class="btn">Audience</button>
+      </div>
+    </section>
+
+    <!-- Result Screen -->
+    <section id="result" class="panel">
+      <div class="card big">
+        <h2 id="result-title">Well played!</h2>
+        <p id="result-msg">You reached level X and won ৳Y</p>
+        <div class="iq">Estimated IQ: <span id="iq">120</span></div>
+        <button class="btn" id="restart">Play Again</button>
+      </div>
+    </section>
+  </div>
+
+  <!-- Audio -->
+  <audio id="bgm" src="assets/music.mp3" loop preload="auto"></audio>
+  <audio id="sfx-correct" src="assets/correct.mp3" preload="auto"></audio>
+  <audio id="sfx-wrong" src="assets/wrong.mp3" preload="auto"></audio>
+  <audio id="sfx-click" src="assets/click.mp3" preload="auto"></audio>
+
+  <script>
+    window.API_BASE = 'http://127.0.0.1:8000'; // FastAPI
+    window.AUDIENCE_BASE = 'http://127.0.0.1:3000'; // Node server
+  </script>
+  <script src="app.js" defer></script>
+</body>
+</html>

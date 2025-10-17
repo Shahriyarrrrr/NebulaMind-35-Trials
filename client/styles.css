@@ -1,0 +1,68 @@
+:root {
+  --bg: radial-gradient(1000px 500px at 30% -10%, #1f3b70, #0b1020 55%);
+  --glass: rgba(255,255,255,0.08);
+  --accent: #7cf7ff;
+  --accent-2: #a78bfa;
+  --danger: #ff5f7e;
+  --ok: #41e2a0;
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0; color: #e8eeff; background: var(--bg) fixed; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+}
+#app { min-height: 100%; display: grid; grid-template-rows: auto 1fr; }
+
+.topbar { display:flex; align-items:center; justify-content:space-between; padding:12px 20px; border-bottom:1px solid rgba(255,255,255,.1); }
+.topbar .brand { display:flex; gap:12px; align-items:center; }
+.topbar .logo { width:42px; height:42px; border-radius:12px; background: linear-gradient(135deg, #7cf7ff33, #a78bfa33); display:grid; place-items:center; font-size:22px; }
+.topbar .title h1{ font-family: Orbitron, Inter, sans-serif; margin:0; letter-spacing:1px; }
+.topbar .title small{ opacity:.8; }
+.topbar .prize{ font-family: Orbitron, Inter, sans-serif; font-weight:800; color: var(--accent); }
+
+.glass { background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.15); backdrop-filter: blur(14px); border-radius:18px; box-shadow: 0 10px 30px rgba(0,0,0,.35); }
+
+.panel { display:none; padding:24px; }
+.panel.show { display:block; animation: fadeIn .5s ease; }
+@keyframes fadeIn { from { opacity:0; transform: translateY(10px);} to { opacity:1; transform:none;} }
+
+.card.big { max-width: 760px; margin: 40px auto; padding: 28px; }
+.card h2 { margin-top:0; font-family: Orbitron; }
+
+.row { margin: 14px 0; display:grid; gap:6px; }
+.row input, .row select { padding: 12px 14px; border-radius: 12px; border:1px solid rgba(255,255,255,.18); background: rgba(255,255,255,.04); color:#fff; outline:none; }
+
+.avatars { display:flex; gap:12px; align-items:center; flex-wrap: wrap; }
+.avatar { width:64px; height:64px; border-radius: 16px; border:2px solid transparent; cursor: pointer; transition: transform .2s ease, border-color .2s ease; }
+.avatar:hover { transform: translateY(-2px) scale(1.02); }
+.avatar.selected { border-color: var(--accent); box-shadow: 0 0 0 4px rgba(124,247,255,0.1); }
+.avatar.hud { width:52px; height:52px; border-radius:14px; }
+
+.btn { padding: 12px 16px; border-radius: 14px; border:1px solid rgba(255,255,255,.2); background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); color:#fff; font-weight:600; cursor:pointer; transition: transform .2s ease, box-shadow .2s ease; }
+.btn:hover { transform: translateY(-1px); box-shadow: 0 8px 18px rgba(0,0,0,.35); }
+.btn.primary { background: linear-gradient(135deg, #7cf7ff44, #a78bfa44); border-color: rgba(124,247,255,.35); }
+
+.hud { display:flex; align-items:center; justify-content:space-between; gap:14px; max-width: 1000px; margin: 18px auto; }
+.hud .player { display:flex; align-items:center; gap:12px; }
+.hud-name { font-weight:800; }
+.hud-tag { opacity:.8; font-size:.9rem; }
+.level { font-family: Orbitron; }
+#timer { font-family: Orbitron; padding:8px 12px; border-radius:12px; border:1px solid rgba(255,255,255,.18); }
+
+.question-wrap { max-width: 1000px; margin: 20px auto; padding: 18px; }
+.question { font-size: 1.3rem; padding: 10px; font-family: Inter; }
+.options { display:grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap:12px; margin-top:10px; }
+.option { padding:14px; border-radius:12px; border:1px solid rgba(255,255,255,.18); background: rgba(255,255,255,.04); cursor:pointer; transition: transform .15s ease, border-color .15s ease, background .15s ease; }
+.option:hover { transform: translateY(-2px); }
+.option.correct { border-color: var(--ok); box-shadow: 0 0 0 3px rgba(65,226,160,.15); }
+.option.wrong { border-color: var(--danger); box-shadow: 0 0 0 3px rgba(255,95,126,.15); }
+.option.disabled { opacity:.6; pointer-events:none; }
+
+.lifelines { max-width: 1000px; margin: 18px auto; display:flex; gap:10px; justify-content:center; }
+
+#result .iq { font-family: Orbitron; font-size:1.4rem; margin:10px 0; color: var(--accent); }
+
+/* Responsive */
+@media (max-width: 760px){
+  .options { grid-template-columns: 1fr; }
+}

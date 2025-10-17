@@ -1,0 +1,25 @@
+# OS / Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Python (server-python)
+server-python/.venv/
+server-python/__pycache__/
+server-python/.pytest_cache/
+*.pyc
+
+# Node (server-node)
+server-node/node_modules/
+server-node/npm-debug.log*
+server-node/yarn-error.log*
+server-node/package-lock.json
+
+# Build / temp
+dist/
+build/
+*.log
+
+# Optional: local HTTP server cache
+client/.cache/
